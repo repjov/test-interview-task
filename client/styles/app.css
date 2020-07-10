@@ -1,0 +1,66 @@
+/* ngcloak
+ * Docs : https://docs.angularjs.org/api/ng/directive/ngCloak
+ */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.translate-cloak {
+  display: none !important;
+}
+
+/* START VARIABLES */
+:root {
+  --main-color: #404b54;
+  --red-color: #e01919;
+  --white-color: #fff;
+}
+/* END VARIABLES */
+
+
+/* START GENERAL styles */
+body {
+  color: var(--main-color);
+}
+.table>tbody>tr>td {
+  vertical-align: middle;
+}
+/* END GENERAL styles */
+
+/* Start Welcome page */
+.welcome__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.welcome {
+  opacity: 0;
+  transform: translateY(30%);
+  text-align: center;
+  transition: all ease-in 0.7s;
+}
+.welcome.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+.welcome__btns {
+  margin-top: 40px;
+}
+.welcome__btns .btn-primary,
+.welcome__btns .btn-primary:focus {
+  color: var(--red-color);
+  background-color:  var(--white-color);
+  border-color: var(--red-color);
+  border-radius: 0;
+  outline: none;
+  transition: all ease-in .2s;
+}
+.welcome__btns .btn-primary:hover,
+.welcome__btns .btn-primary:active {
+  color: var(--white-color);
+  background-color: var(--red-color);
+}
+/* End Welcome page */
+
+
