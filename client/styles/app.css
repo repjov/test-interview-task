@@ -25,6 +25,12 @@ body {
 .table>tbody>tr>td {
   vertical-align: middle;
 }
+.btn,
+.btn:focus,
+.btn:active {
+  border-radius: 0;
+  outline: none;
+}
 /* END GENERAL styles */
 
 /* Start Welcome page */
@@ -52,8 +58,6 @@ body {
   color: var(--red-color);
   background-color:  var(--white-color);
   border-color: var(--red-color);
-  border-radius: 0;
-  outline: none;
   transition: all ease-in .2s;
 }
 .welcome__btns .btn-primary:hover,

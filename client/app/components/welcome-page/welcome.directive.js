@@ -29,7 +29,7 @@
     // small animation
     $timeout(function(){
       vm.appear = true;
-    }, 500);
+    }, 100);
 
     vm.goToUserList = function() {
       $location.path( "/users" );
