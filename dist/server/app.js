@@ -15,7 +15,8 @@ var routes = require('./src/routes');
 /**
  * MongoDB configurations
  */
-var mongodbUrl = 'mongodb://' + config.DB_HOST + ':' + config.DB_PORT + '/' + config.DB_NAME;
+// var mongodbUrl = 'mongodb://' + config.DB_HOST + ':' + config.DB_PORT + '/' + config.DB_NAME;
+var mongodbUrl = 'mongodb://192b150d103822cdb014cff95e865f6a:qwerty123@9a.mongo.evennode.com:27017,9b.mongo.evennode.com:27017/192b150d103822cdb014cff95e865f6a?replicaSet=eu-9';
 
 // Database options
 // Option auto_reconnect is defaulted to true
