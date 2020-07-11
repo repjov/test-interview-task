@@ -14,6 +14,10 @@
   --main-color: #404b54;
   --red-color: #e01919;
   --white-color: #fff;
+  --grey-color: #8e8e8e;
+  --background-color: #edf4ff;
+  
+  --font-size: 16px;
 }
 /* END VARIABLES */
 
@@ -21,6 +25,8 @@
 /* START GENERAL styles */
 body {
   color: var(--main-color);
+  font-size: var(--font-size);
+  background-color: var(--background-color);
 }
 .table>tbody>tr>td {
   vertical-align: middle;
@@ -30,6 +36,29 @@ body {
 .btn:active {
   border-radius: 0;
   outline: none;
+}
+
+.wrapper {
+  padding: 40px 0;
+}
+
+.form-control {
+  border-radius: 0;
+  padding: 20px 10px;
+}
+label {
+  font-weight: 400;
+  font-size: 14px;
+}
+.has-error .form-control,
+.has-error .form-control:focus {
+  border-color: var(--red-color);
+}
+.error-text {
+  color: var(--red-color);
+  font-size: 12px;
+  margin-top: 3px;
+  position: absolute;
 }
 /* END GENERAL styles */
 
@@ -67,4 +96,50 @@ body {
 }
 /* End Welcome page */
 
+/* Start edit-user component */
+.users-edit__header h2,
+.users-list__header h2 {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+}
+.users-edit__form,
+.users-list {
+  background-color: var(--white-color);
+  margin-top: 20px;
+  /* min-height: calc(100vh - 180px); */
+  padding: 30px 40px;
+  -webkit-box-shadow: 0px 6px 13px 0px rgba(220,220,220,1);
+  -moz-box-shadow: 0px 6px 13px 0px rgba(220,220,220,1);
+  box-shadow: 0px 6px 13px 0px rgba(220,220,220,1); 
+}
+/* End edit-user component */
+
+/* Start breadcrumbs component */
+.breadcrumbs {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.breadcrumbs__item {
+  list-style: none;
+}
+.breadcrumbs__item span {
+  color: var(--grey-color);
+}
+.breadcrumbs__item:not(:first-child)::before {
+  content: '/';
+  color: var(--grey-color);
+  padding: 0 8px 0 12px;
+  font-size: 16px;
+}
+.edit-form .form-group {
+  margin-bottom: 25px;
+}
+.edit-form__buttons {
+  text-align: right;
+  margin-top: 50px;
+}
+/* End breadcrumbs component */
 

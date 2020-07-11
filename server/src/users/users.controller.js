@@ -1,6 +1,6 @@
 'use strict';
 
-var Users = require('./users.model');
+var Users = require('./user.model');
 
 /**
  * GET /users
@@ -10,12 +10,15 @@ var Users = require('./users.model');
  *
  */
 exports.find = function(req, res, next) {
-  Users.find(function(err, users) {
-    if (err) {
-      return next(err);
-    }
-    return res.status(200).json(users);
-  });
+  Users
+    .find({})
+    .populate('role')
+    .exec(function(err, users) {
+        if (err) {
+          return next(err);
+        }
+        return res.status(200).json(users);
+      });
 };
 
 /**
@@ -26,15 +29,18 @@ exports.find = function(req, res, next) {
  *
  */
 exports.get = function(req, res, next) {
-  Users.findById(req.params.id, function(err, user) {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(404).send('Not Found');
-    }
-    return res.status(200).json(user);
-  });
+  Users
+    .findById(req.params.id)
+    .populate('role')
+    .exec(function(err, user) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(404).send('Not Found');
+      }
+      return res.status(200).json(user);
+    });
 };
 
 /**

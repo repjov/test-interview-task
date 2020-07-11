@@ -27,6 +27,23 @@
       }
     });
 
+    $stateProvider.state('userEdit', {
+      name: 'userEdit',
+      url: '/users/:id',
+      templateUrl: 'app/components/users-page/userEdit.html',
+      controller: 'UserEditCtrl',
+      controllerAs: 'vmEUsers',
+      resolve: {
+        user: function(usersService, $stateParams) {
+          var id = $stateParams.id;
+          return usersService.getUserById(id);
+        },
+        roles: function(usersService, $stateParams) {
+          return usersService.getRoles();
+        }
+      }
+    });
+
     $urlRouterProvider.otherwise('/');
   }
 })();

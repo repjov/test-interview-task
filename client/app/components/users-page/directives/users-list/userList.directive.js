@@ -10,16 +10,15 @@
         controller: UsersListCtrl,
         controllerAs: 'ulistVm',
         bindToController: {
-          users: '='
+          users: '=',
+          onEdit: '<'
         },
       };
     });
 
-  UsersListCtrl.$inject = ['$http', 'usersService'];
+  UsersListCtrl.$inject = [];
 
   function UsersListCtrl() {
     var vm = this;
-    console.log('||>>>>', this);
-    // vm.users = $scope.ulistVm.users;
   }
 })();

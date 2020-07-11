@@ -18,6 +18,7 @@
     "angular-translate-loader-static-files": "~2.10.0",
     "angular-cookies": "^1.8.0",
     "angular-translate-storage-cookie": "^2.18.3",
-    "angular-ui-router": "^1.0.26"
+    "angular-ui-router": "^1.0.26",
+    "angular-ui-select": "^0.19.8"
   }
 }

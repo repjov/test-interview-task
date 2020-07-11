@@ -9,6 +9,7 @@
       'ngTouch',
       'ngSanitize',
       'ui.router',
+      'ui.select',
       'pascalprecht.translate',
       'tmh.dynamicLocale',
       'appTemplates'
