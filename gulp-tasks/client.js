@@ -99,7 +99,7 @@ gulp.task('client:build', function() {
     .pipe(useref())
     .pipe(jsFilter)
     .pipe(ngAnnotate())
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(rev())
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
