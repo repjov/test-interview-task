@@ -5,6 +5,7 @@
   "scripts": {
     "seed-setup": "seed-setup",
     "seed": "seed",
+    "prod": "cd ./dist/server && node app.js",
     "start": "node ./node_modules/gulp/bin/gulp.js",
     "test": "node ./node_modules/gulp/bin/gulp.js test",
     "dist": "node ./node_modules/gulp/bin/gulp.js dist",
