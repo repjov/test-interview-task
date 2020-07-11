@@ -1,11 +1,11 @@
 angular.module('appTemplates', []).run(['$templateCache', function($templateCache) {$templateCache.put('app/components/users-page/userEdit.html','<div class="container">\n\t<div class="users-edit__wrapper wrapper">\n\t\t<div class="users-edit">\n\t\t\t<div class="users-edit__header">\n\t\t\t\t<h2>{{vmEUsers.title}}</h2>\n\t\t\t\t<breadcrumbs data="vmEUsers.breadcrumbs"></breadcrumbs>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="users-edit__form">\n\t\t\t<user-form user="vmEUsers.user" on-save="vmEUsers.onSave" roles="vmEUsers.roles"></user-form>\n\t\t</div>\n\t</div>\n</div>');
 $templateCache.put('app/components/users-page/users.html','<div class="container">\n  <div class="users-list__wrapper wrapper">\n    <div class="users-list__header">\n      <div>\n        <h2>User list</h2>\n        <breadcrumbs data="vmUsers.breadcrumbs"></breadcrumbs>\n      </div>\n      <div>\n        <a class="btn btn-success btn-lg" ui-sref="userAdd" >\n          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;Add User\n        </a>\n      </div>\n    </div>\n    <div class="users-list">\n      <ulist users="vmUsers.users" on-remove="vmUsers.remove" on-edit="vmUsers.goToEdit"></ulist>\n    </div>\n  </div>\n</div>\n');
-$templateCache.put('app/components/welcome-page/welcome.html','<div class="container">\n  <div class="welcome__wrapper">\n    <div class="welcome" ng-class="{appear: welcomeVm.appear}">\n      <h1>{{\'welcome.helloWorld\' | translate}}</h1>\n      <p>{{\'welcome.text\' | translate}}</p>\n      <div class="welcome__btns">\n        <button ng-click="welcomeVm.goToUserList()" class="btn btn-primary btn-block btn-lg">{{\'welcome.getStartedBtn\' | translate}}</button>\n      </div>\n    </div>\n  </div>\n</div>\n');
+$templateCache.put('app/components/welcome-page/welcome.html','<div class="welcome__wrapper">\n  <div class="welcome" ng-class="{appear: welcomeVm.appear}">\n    <h1>{{\'welcome.helloWorld\' | translate}}</h1>\n    <p>{{\'welcome.text\' | translate}}</p>\n    <div class="welcome__btns">\n      <button ng-click="welcomeVm.goToUserList()" class="btn btn-primary btn-block btn-lg">{{\'welcome.getStartedBtn\' | translate}}</button>\n    </div>\n  </div>\n</div>\n\n');
 $templateCache.put('app/modules/common/errors/errors.html','');
 $templateCache.put('app/components/users-page/directives/breadcrumbs/breadcrumbs.html','<ul class="breadcrumbs">\n  <li class="breadcrumbs__item" ng-repeat="val in brcVm.data">\n    <a ng-if="val.url != \'\'" ui-sref="{{val.url}}">{{val.name}}</a>\n    <span ng-if="val.url == \'\'" ui-sref="{{val.url}}">{{val.name}}</span>\n  </li>\n</ul>');
 $templateCache.put('app/components/users-page/directives/user-filter/userFilter.html','<div class="users-list__filter">\n\t<form class="form-inline">\n\t\t<div class="form-group">\n\t\t\t<div class="input-group">\n\t\t\t\t<span class="input-group-addon" id="basic-addon1">\n\t\t\t\t\t<span class="glyphicon glyphicon-search" aria-hidden="true"></span>\n\t\t\t\t</span>\n\t\t\t\t<input ng-change="ufilterVm.update()" style="width: 300px" type="text" ng-model="ufilterVm.filter.search" class="form-control" placeholder="Type here to search" aria-describedby="basic-addon1">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class="form-group">\n\t\t\t<!-- <label class="sr-only" for="exampleInputPassword3">Password</label> -->\n\t\t\t<!-- <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password"> -->\n\t\t\t<ui-select on-select="ufilterVm.update()" ng-model="ufilterVm.filter.role" title="Choose a role" search-enabled="false" style="width: 200px">\n\t\t\t\t<ui-select-match placeholder="Select or search a role in the list...">{{$select.selected.name}}</ui-select-match>\n\t\t\t\t<ui-select-choices repeat="role in ufilterVm.roles | filter: $select.search">\n\t\t\t\t\t<span ng-bind-html="role.name | highlight: $select.search"></span>\n\t\t\t\t</ui-select-choices>\n\t\t\t</ui-select>\n\t\t</div>\n\t</form>\n</div>');
-$templateCache.put('app/components/users-page/directives/user-form/userForm.html','<form name="aForm" class="edit-form" novalidate>\n\t<div class="form-group" ng-class="{\'has-error\': aForm.fname.$invalid && aForm.fname.$dirty}">\n\t\t<label for="exampleInputEmail1">User firstname</label>\n\t\t<input type="text" class="form-control" name="fname" ng-pattern="uformVm.validationRules.onlyLetters" ng-model="uformVm.user.fname" required placeholder="First name">\n\t\t<ng-messages for="aForm.fname.$error" ng-show="aForm.fname.$invalid && aForm.fname.$dirty">\n\t\t\t<span ng-show="aForm.fname.$error.required" class="error-text">This field is required</span>\n\t\t\t<span ng-show="aForm.fname.$error.pattern" class="error-text">First name can not contains numbers or symbols</span>\n    </ng-messages>\n\t</div>\n\t<div class="form-group" ng-class="{\'has-error\': aForm.lname.$invalid && aForm.lname.$dirty}">\n\t\t<label for="exampleInputPassword1">User lastname</label>\n\t\t<input type="text" class="form-control" name="lname" ng-pattern="uformVm.validationRules.onlyLetters" ng-model="uformVm.user.lname" required placeholder="Last name">\n\t\t<ng-messages for="aForm.lname.$error" ng-show="aForm.lname.$invalid && aForm.lname.$dirty">\n\t\t\t<span ng-show="aForm.lname.$error.required" class="error-text">This field is required</span>\n\t\t\t<span ng-show="aForm.lname.$error.pattern" class="error-text">Last name can not contains numbers or symbols</span>\n    </ng-messages>\n\t</div>\n\t<div class="form-group" ng-class="{\'has-error\': aForm.email.$invalid && aForm.email.$dirty}">\n\t\t<label for="exampleInputPassword1">User email</label>\n\t\t<input type="email" class="form-control" name="email" ng-model="uformVm.user.email" required placeholder="email">\n\t\t<ng-messages for="aForm.email.$error" ng-show="aForm.email.$invalid && aForm.email.$dirty">\n\t\t\t<span ng-show="aForm.email.$error.required" class="error-text">This field is required</span>\n\t\t\t<span ng-show="aForm.email.$error.email" class="error-text">Invalid email address</span>\n    </ng-messages>\n\t</div>\n\t<div class="form-group">\n\t\t<label for="exampleInputPassword1">Select a Role</label>\n\t\t<!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->\n\t\t<ui-select ng-model="uformVm.user.role" title="Choose a role" search-enabled="false">\n\t\t\t<ui-select-match placeholder="Select or search a role in the list...">{{$select.selected.name}}</ui-select-match>\n\t\t\t<ui-select-choices repeat="role in uformVm.roles | filter: $select.search">\n\t\t\t\t<span ng-bind-html="role.name | highlight: $select.search"></span>\n\t\t\t\t<!-- <small ng-bind-html="country.code | highlight: $select.search"></small> -->\n\t\t\t</ui-select-choices>\n\t\t</ui-select>\n\t</div>\n\t<div class="edit-form__buttons">\n\t\t<a ui-sref="users" class="btn btn-default">Cancel</a>\n\t\t<button ng-disabled="!aForm.$valid" ng-click="uformVm.send()" type="submit" class="btn btn-success">Save</button>\n\t</div>\n</form>');
-$templateCache.put('app/components/users-page/directives/users-list/usersList.html','<div ng-if="ulistVm.users.length > 0" class="users-list__table">\n  <user-filter users="ulistVm.users" on-update="ulistVm.onUpdate"></user-filter>\n  <table class="table table-striped">\n    <thead>\n      <th>Firstname</th>\n      <th>Lastname</th>\n      <th>Email</th>\n      <th>Role</th>\n      <th>&nbsp;</th>\n    </thead>\n    <tbody>\n      <tr ng-repeat="val in ulistVm.users | usearch:ulistVm.filter">\n        <td>{{val.fname}}</td>\n        <td>{{val.lname}}</td>\n        <td>{{val.email}}</td>\n        <td>{{val.role.name}}</td>\n        <td class="text-right">\n          <button ng-click="ulistVm.onEdit(val._id)" class="btn btn-default" type="submit">\n            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\n            edit\n          </button>\n          <button ng-click="ulistVm.onRemove(val._id)" class="btn btn-danger" type="submit">\n            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\n            remove\n          </button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<div ng-if="ulistVm.users.length == 0" class="users-list__empty">\n  <img src="https://ouch-cdn.icons8.com/preview/819/a75c989b-ea17-456d-9e9a-a6a2d07c8428.png" />\n  No users in Database\n</div>\n\n');}]);
+$templateCache.put('app/components/users-page/directives/users-list/usersList.html','<div ng-if="ulistVm.users.length > 0" class="users-list__table">\n  <user-filter users="ulistVm.users" on-update="ulistVm.onUpdate"></user-filter>\n  <table class="table table-striped">\n    <thead>\n      <th>Firstname</th>\n      <th>Lastname</th>\n      <th>Email</th>\n      <th>Role</th>\n      <th>&nbsp;</th>\n    </thead>\n    <tbody>\n      <tr ng-repeat="val in ulistVm.users | usearch:ulistVm.filter">\n        <td>{{val.fname}}</td>\n        <td>{{val.lname}}</td>\n        <td>{{val.email}}</td>\n        <td>{{val.role.name}}</td>\n        <td class="text-right">\n          <button ng-click="ulistVm.onEdit(val._id)" class="btn btn-default" type="submit">\n            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\n            edit\n          </button>\n          <button ng-click="ulistVm.onRemove(val._id)" class="btn btn-danger" type="submit">\n            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>\n            remove\n          </button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<div ng-if="ulistVm.users.length == 0" class="users-list__empty">\n  <img src="https://ouch-cdn.icons8.com/preview/819/a75c989b-ea17-456d-9e9a-a6a2d07c8428.png" />\n  No users in Database\n</div>\n\n');
+$templateCache.put('app/components/users-page/directives/user-form/userForm.html','<form name="aForm" class="edit-form" novalidate>\n\t<div class="form-group" ng-class="{\'has-error\': aForm.fname.$invalid && aForm.fname.$dirty}">\n\t\t<label for="exampleInputEmail1">User firstname</label>\n\t\t<input type="text" class="form-control" name="fname" ng-pattern="uformVm.validationRules.onlyLetters" ng-model="uformVm.user.fname" required placeholder="First name">\n\t\t<ng-messages for="aForm.fname.$error" ng-show="aForm.fname.$invalid && aForm.fname.$dirty">\n\t\t\t<span ng-show="aForm.fname.$error.required" class="error-text">This field is required</span>\n\t\t\t<span ng-show="aForm.fname.$error.pattern" class="error-text">First name can not contains numbers or symbols</span>\n    </ng-messages>\n\t</div>\n\t<div class="form-group" ng-class="{\'has-error\': aForm.lname.$invalid && aForm.lname.$dirty}">\n\t\t<label for="exampleInputPassword1">User lastname</label>\n\t\t<input type="text" class="form-control" name="lname" ng-pattern="uformVm.validationRules.onlyLetters" ng-model="uformVm.user.lname" required placeholder="Last name">\n\t\t<ng-messages for="aForm.lname.$error" ng-show="aForm.lname.$invalid && aForm.lname.$dirty">\n\t\t\t<span ng-show="aForm.lname.$error.required" class="error-text">This field is required</span>\n\t\t\t<span ng-show="aForm.lname.$error.pattern" class="error-text">Last name can not contains numbers or symbols</span>\n    </ng-messages>\n\t</div>\n\t<div class="form-group" ng-class="{\'has-error\': aForm.email.$invalid && aForm.email.$dirty}">\n\t\t<label for="exampleInputPassword1">User email</label>\n\t\t<input type="email" class="form-control" name="email" ng-model="uformVm.user.email" required placeholder="email">\n\t\t<ng-messages for="aForm.email.$error" ng-show="aForm.email.$invalid && aForm.email.$dirty">\n\t\t\t<span ng-show="aForm.email.$error.required" class="error-text">This field is required</span>\n\t\t\t<span ng-show="aForm.email.$error.email" class="error-text">Invalid email address</span>\n    </ng-messages>\n\t</div>\n\t<div class="form-group">\n\t\t<label for="exampleInputPassword1">Select a Role</label>\n\t\t<!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->\n\t\t<ui-select ng-model="uformVm.user.role" title="Choose a role" search-enabled="false">\n\t\t\t<ui-select-match placeholder="Select or search a role in the list...">{{$select.selected.name}}</ui-select-match>\n\t\t\t<ui-select-choices repeat="role in uformVm.roles | filter: $select.search">\n\t\t\t\t<span ng-bind-html="role.name | highlight: $select.search"></span>\n\t\t\t\t<!-- <small ng-bind-html="country.code | highlight: $select.search"></small> -->\n\t\t\t</ui-select-choices>\n\t\t</ui-select>\n\t</div>\n\t<div class="edit-form__buttons">\n\t\t<a ui-sref="users" class="btn btn-default">Cancel</a>\n\t\t<button ng-disabled="!aForm.$valid" ng-click="uformVm.send()" type="submit" class="btn btn-success">Save</button>\n\t</div>\n</form>');}]);
 (function() {
   'use strict';
 
@@ -25,6 +25,40 @@ $templateCache.put('app/components/users-page/directives/users-list/usersList.ht
 
 })();
 
+(function() {
+	'use strict';
+
+	angular
+		.module('app')
+		.directive('userForm', function() {
+			return {
+				restrict: 'E',
+				templateUrl: 'app/components/users-page/directives/user-form/userForm.html',
+				controller: UserFormCtrl,
+				controllerAs: 'uformVm',
+				bindToController: {
+					user: '<',
+					roles: '<',
+					onSave: '<',
+				},
+			};
+		});
+
+	UserFormCtrl.$inject = [];
+
+	function UserFormCtrl() {
+		var vm = this;
+
+		vm.validationRules = {
+			onlyLetters: '[a-zA-Z]+',
+		};
+
+		vm.send = function() {
+			vm.onSave(vm.user);
+		}
+	}
+})();
+  
 (function() {
   'use strict';
 
@@ -85,40 +119,6 @@ $templateCache.put('app/components/users-page/directives/users-list/usersList.ht
   }
 })();
 
-(function() {
-	'use strict';
-
-	angular
-		.module('app')
-		.directive('userForm', function() {
-			return {
-				restrict: 'E',
-				templateUrl: 'app/components/users-page/directives/user-form/userForm.html',
-				controller: UserFormCtrl,
-				controllerAs: 'uformVm',
-				bindToController: {
-					user: '<',
-					roles: '<',
-					onSave: '<',
-				},
-			};
-		});
-
-	UserFormCtrl.$inject = [];
-
-	function UserFormCtrl() {
-		var vm = this;
-
-		vm.validationRules = {
-			onlyLetters: '[a-zA-Z]+',
-		};
-
-		vm.send = function() {
-			vm.onSave(vm.user);
-		}
-	}
-})();
-  
 (function() {
 	'use strict';
 
