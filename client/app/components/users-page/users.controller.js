@@ -14,7 +14,7 @@
 
   function UsersCtrl(usersService, $scope, users, $location) {
     var vm = this;
-    vm.users = users;
+    vm.users = users.data;
 
     vm.breadcrumbs = [{
       name: 'Users',
@@ -23,6 +23,14 @@
 
     vm.goToEdit = function(id) {
       $location.path( ['/users', id].join('/') );
+    }
+
+    vm.remove = function(id) {
+      usersService.delete(id).then((res) => {
+        if (res && res.success) {
+          vm.users = vm.users.filter((res) => res._id != id);
+        }
+      });
     }
   }
 })();

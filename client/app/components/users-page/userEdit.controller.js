@@ -7,15 +7,18 @@
 
 	UserEditCtrl.$inject = [
 		'usersService',
-		'$scope',
 		'user',
 		'roles',
-		'$location',
+		'$timeout',
 	];
 
-	function UserEditCtrl(usersService, $scope, user, roles, $location) {
+	function UserEditCtrl(usersService, user, roles, $timeout) {
 		var vm = this;
-		vm.user = user;
+		vm.user = user.data;
+		vm.roles = roles.data;
+		vm.title = 'Edit user';
+		var sending = false;
+
 
 		vm.breadcrumbs = [
 			{
@@ -28,8 +31,16 @@
 			}
 		];
 
-		vm.goToEdit = function(id) {
-			$location.path( ['/users', id].join('/') );
+		vm.onSave = function(user) {
+			if(!sending) {
+				sending = true;
+				usersService.update(user).then(function(){
+					// protection against the fool
+					$timeout(function(){
+						sending = false;
+					}, 500);
+				});
+			}
 		}
 	}
 })();

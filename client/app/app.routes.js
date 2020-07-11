@@ -38,7 +38,20 @@
           var id = $stateParams.id;
           return usersService.getUserById(id);
         },
-        roles: function(usersService, $stateParams) {
+        roles: function(usersService) {
+          return usersService.getRoles();
+        }
+      }
+    });
+
+    $stateProvider.state('userAdd', {
+      name: 'userAdd',
+      url: '/users/new',
+      templateUrl: 'app/components/users-page/userEdit.html',
+      controller: 'UserAddCtrl',
+      controllerAs: 'vmEUsers',
+      resolve: {
+        roles: function(usersService) {
           return usersService.getRoles();
         }
       }

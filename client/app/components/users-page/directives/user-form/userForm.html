@@ -25,17 +25,17 @@
 	</div>
 	<div class="form-group">
 		<label for="exampleInputPassword1">Select a Role</label>
-		<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-		<ui-select ng-model="ctrl.country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
-			<ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
-			<ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
-				<span ng-bind-html="country.name | highlight: $select.search"></span>
-				<small ng-bind-html="country.code | highlight: $select.search"></small>
+		<!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+		<ui-select ng-model="uformVm.user.role" title="Choose a role" search-enabled="false">
+			<ui-select-match placeholder="Select or search a role in the list...">{{$select.selected.name}}</ui-select-match>
+			<ui-select-choices repeat="role in uformVm.roles | filter: $select.search">
+				<span ng-bind-html="role.name | highlight: $select.search"></span>
+				<!-- <small ng-bind-html="country.code | highlight: $select.search"></small> -->
 			</ui-select-choices>
 		</ui-select>
 	</div>
 	<div class="edit-form__buttons">
 		<a ui-sref="users" class="btn btn-default">Cancel</a>
-		<button ng-disabled="!aForm.$valid" ng-click="uformVm.send(aForm)" type="submit" class="btn btn-success">Save</button>
+		<button ng-disabled="!aForm.$valid" ng-click="uformVm.send()" type="submit" class="btn btn-success">Save</button>
 	</div>
 </form>

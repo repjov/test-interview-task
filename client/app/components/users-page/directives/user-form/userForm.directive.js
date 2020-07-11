@@ -10,8 +10,9 @@
 				controller: UserFormCtrl,
 				controllerAs: 'uformVm',
 				bindToController: {
-					user: '=',
-					roles: '<'
+					user: '<',
+					roles: '<',
+					onSave: '<',
 				},
 			};
 		});
@@ -25,8 +26,8 @@
 			onlyLetters: '[a-zA-Z]+',
 		};
 
-		vm.send = function(form) {
-			console.log('.>>>', form);
+		vm.send = function() {
+			vm.onSave(vm.user);
 		}
 	}
 })();

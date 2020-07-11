@@ -2,12 +2,12 @@
 	<div class="users-edit__wrapper wrapper">
 		<div class="users-edit">
 			<div class="users-edit__header">
-				<h2>Edit user</h2>
+				<h2>{{vmEUsers.title}}</h2>
 				<breadcrumbs data="vmEUsers.breadcrumbs"></breadcrumbs>
 			</div>
 		</div>
 		<div class="users-edit__form">
-			<user-form user="vmEUsers.user" roles="vmEUsers.roles"></user-form>
+			<user-form user="vmEUsers.user" on-save="vmEUsers.onSave" roles="vmEUsers.roles"></user-form>
 		</div>
 	</div>
 </div>

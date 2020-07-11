@@ -1,6 +1,6 @@
 'use strict';
-
-var Users = require('./user.model');
+const mongoose = require('mongoose');
+const Users = require('./user.model');
 
 /**
  * GET /users
@@ -51,7 +51,15 @@ exports.get = function(req, res, next) {
  *
  */
 exports.post = function(req, res, next) {
-  Users.create(req.body, function(err, user) {
+  const { lname, fname, email, role } = req.body;
+  const newUser = {
+    lname: lname,
+    fname: fname,
+    email: email,
+    role: role,
+  };
+
+  Users.create(newUser, function(err, user) {
     if (err) {
       return next(err);
     }
@@ -67,6 +75,7 @@ exports.post = function(req, res, next) {
  *
  */
 exports.put = function(req, res, next) {
+  // try to find user
   Users.findById(req.params.id, function(err, user) {
     if (err) {
       return next(err);
@@ -75,14 +84,42 @@ exports.put = function(req, res, next) {
       return res.status(404).send('Not Found');
     }
 
-    user.name = req.body.name;
-    user.description = req.body.description;
+    // user found and we try to update
+    user.fname = req.body.fname;
+    user.lname = req.body.lname;
+    user.email = req.body.email;
+    user.role = mongoose.Types.ObjectId(req.body.role._id);
 
-    user.save(function(err) {
+    user.save(function(err, uUser) {
       if (err) {
         return next(err);
       }
-      return res.status(200).json(user);
+      
+      return res.status(200).json(uUser);
     });
+  });
+};
+
+/**
+ * DELETE /users/:id
+ *
+ * @description
+ * Remove a user
+ *
+ */
+exports.delete = function(req, res, next) {
+
+  const { id } = req.params;
+  Users.remove( { _id: id }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return res.status(404).send('Not Found');
+    }
+
+    return res.status(200).json(user);
+
   });
 };

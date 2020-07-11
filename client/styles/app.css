@@ -16,6 +16,7 @@
   --white-color: #fff;
   --grey-color: #8e8e8e;
   --background-color: #edf4ff;
+  --border-input-color: #ccc;
   
   --font-size: 16px;
 }
@@ -60,14 +61,42 @@ label {
   margin-top: 3px;
   position: absolute;
 }
+
+/* START UI select styling */
+.ui-select-bootstrap>.ui-select-match>.btn {
+  display: flex;
+  align-items: center;
+}
+
+.ui-select-bootstrap>.ui-select-match.btn-default-focus,
+.ui-select-bootstrap>.ui-select-match:focus,
+.ui-select-bootstrap>.ui-select-match:active,
+.ui-select-bootstrap>.ui-select-match>.btn:hover {
+  background-color: var(--white-color);
+  border-color: var(--border-input-color);
+  box-shadow: none;
+  outline: none;
+}
+.ui-select-bootstrap .ui-select-search-hidden {
+  display: none;
+}
+/* END UI select styling */
+
 /* END GENERAL styles */
 
 /* Start Welcome page */
 .welcome__wrapper {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 600px;
+  margin-top: 50%;
+  top: -300px;
+  background-color: var(--white-color);
+  -webkit-box-shadow: 0px 6px 13px 0px rgba(220,220,220,1);
+  -moz-box-shadow: 0px 6px 13px 0px rgba(220,220,220,1);
+  box-shadow: 0px 6px 13px 0px rgba(220,220,220,1); 
 }
 .welcome {
   opacity: 0;
@@ -97,6 +126,12 @@ label {
 /* End Welcome page */
 
 /* Start edit-user component */
+.users-list__header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 .users-edit__header h2,
 .users-list__header h2 {
   text-transform: uppercase;
@@ -107,11 +142,29 @@ label {
 .users-list {
   background-color: var(--white-color);
   margin-top: 20px;
-  /* min-height: calc(100vh - 180px); */
   padding: 30px 40px;
   -webkit-box-shadow: 0px 6px 13px 0px rgba(220,220,220,1);
   -moz-box-shadow: 0px 6px 13px 0px rgba(220,220,220,1);
   box-shadow: 0px 6px 13px 0px rgba(220,220,220,1); 
+}
+
+.users-list__filter {
+  margin-bottom: 20px;
+}
+
+.users-list__empty {
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--grey-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-list__empty img {
+  width: 200px;
+  margin-bottom: 30px;
 }
 /* End edit-user component */
 

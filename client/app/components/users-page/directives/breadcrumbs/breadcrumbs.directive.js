@@ -18,7 +18,7 @@
 	BreadcrumbsCtrl.$inject = [];
 
 	function BreadcrumbsCtrl() {
-		var vm = this;
+
 	}
 })();
   
