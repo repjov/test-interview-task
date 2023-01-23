@@ -43,6 +43,6 @@
     "gulp-useref": "^3.0.7",
     "http-proxy-middleware": "^0.17.0",
     "should": "^9.0.2",
-    "supertest": "^1.2.0"
+    "supertest": "^6.3.3"
   }
 }
